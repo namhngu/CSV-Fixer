@@ -30,7 +30,6 @@ public class CSVFixer {
 
         while (strLine != null){
             String[] attributes = strLine.split(",", 0);
-            if (attributes.length != 0) {
                 if (attributes.length == 1) {
                     header = attributes[0];
                     if (setting.equals("1")) {
@@ -43,14 +42,13 @@ public class CSVFixer {
                             id = headerToID.get(header);
                         }
                     }
-                } else {
+                } else if (attributes.length != 0){
                     if (setting.equals("1")) {
                         writer.write(id + "," + strLine + "\n");
                     } else if (setting.equals("0")) {
                         writer.write(header + "," + strLine + "\n");
                     }
                 }
-            }
             strLine = br.readLine();
         }
         br.close();
